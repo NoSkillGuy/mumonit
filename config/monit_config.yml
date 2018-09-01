@@ -1,0 +1,7 @@
+localhost:
+  host_url: http://localhost:2812/
+  monit_url: _runtime
+  monit_process_urls:
+    - mysqld
+    - recko_stats
+  monit_system_url: sivas-MacBook-Air-2.local

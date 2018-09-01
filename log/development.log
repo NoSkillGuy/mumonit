@@ -1,0 +1,683 @@
+  [1m[35m (22.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (60.9ms)[0m  [1m[35mCREATE DATABASE `mumonit` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (2.1ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE DATABASE `mumonit-test` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (94.2ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rake:9
+  [1m[35m (16.8ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ bin/rake:9
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to CreateUsers (20180829150018)
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20180829150018_create_users.rb:3
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (4.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150018')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateSystems (20180829150453)
+  [1m[35m (18.3ms)[0m  [1m[35mCREATE TABLE `systems` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `status` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `load_average` varchar(255), `cpu` varchar(255), `memory_usage` varchar(255), `swap_usage` varchar(255), `uptime` varchar(255), `boot_time` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150453_create_systems.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150453')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateProcesses (20180829150610)
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE `processes` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `pid_file` varchar(255), `status` varchar(255), `group` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `pid` varchar(255), `parent_pid` varchar(255), `uid` varchar(255), `effective_uid` varchar(255), `gid` varchar(255), `uptime` varchar(255), `threads` varchar(255), `children` varchar(255), `cpu` varchar(255), `cpu_total` varchar(255), `memory` varchar(255), `memory_total` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150610_create_processes.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150610')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonits (20180829151701)
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE `monits` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `monit_id` varchar(255), `host` varchar(255), `process_id` varchar(255), `effective_user_running_monit` varchar(255), `controlfile` varchar(255), `logfile` varchar(255), `pidfile` varchar(255), `state_file` varchar(255), `debug` varchar(255), `log` varchar(255), `use_syslog` varchar(255), `limit_for_send_expect_buffer` varchar(255), `limit_for_file_content_buffer` varchar(255), `limit_for_http_content_buffer` varchar(255), `limit_for_program_output` varchar(255), `limit_for_network_timeout` varchar(255), `limit_for_check_program_timeout` varchar(255), `limit_for_service_stop_timeout` varchar(255), `limit_for_service_start_timeout` varchar(255), `limit_for_service_restart_timeout` varchar(255), `on_reboot` varchar(255), `poll_time` varchar(255), `httpd_bind_address` varchar(255), `httpd_portnumber` varchar(255), `httpd_signature` varchar(255), `httpd_auth_style` varchar(255))[0m
+  ↳ db/migrate/20180829151701_create_monits.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829151701')[0m
+  ↳ bin/rake:9
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-09-01 01:12:25', '2018-09-01 01:12:25')[0m
+  ↳ bin/rake:9
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Started GET "/" for 127.0.0.1 at 2018-09-01 06:55:40 +0530
+  [1m[35m (1.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/noskillguy/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/noskillguy/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/noskillguy/.rvm/gems/ruby-2.5.1/gems/railties-5.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/noskillguy/.rvm/gems/ruby-2.5.1/gems/railties-5.2.1/lib/rails/templates/rails/welcome/index.html.erb (5.7ms)
+Completed 200 OK in 42ms (Views: 19.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2018-09-01 06:55:46 +0530
+  [1m[35m (1.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/noskillguy/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (56.8ms)
+  Rendered users/new.html.erb within layouts/application (61.7ms)
+Completed 200 OK in 1532ms (Views: 1481.3ms | ActiveRecord: 28.9ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-09-01 06:55:58 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Pp+gV8bbNeCjmIhIVJcv4Ld681Aofv7wkE9RnhLr1zSuh8fzdbBc/4PFw2YqnW7xWE/Bb0wtiNWUG3mJtPmLng==", "user"=>{"name"=>"first_name", "email"=>"email"}, "commit"=>"Create User"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`) VALUES ('first_name', 'email', '2018-09-01 01:25:58', '2018-09-01 01:25:58')[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[35m (28.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:30
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 40ms (ActiveRecord: 29.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-09-01 06:55:58 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:67
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 232ms (Views: 172.5ms | ActiveRecord: 0.8ms)
+
+
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSystem Create (0.9ms)[0m  [1m[32mINSERT INTO `systems` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `load_average`, `cpu`, `memory_usage`, `swap_usage`, `uptime`, `boot_time`, `data_collected`) VALUES ('sivas-MacBook-Air-2.local', 'OK', 'Monitored', 'active', 'start', '[3.99] [3.57] [3.86]', '28.5%us 9.3%sy', '4.2 GB [52.7%]', '2.0 GB [66.8%]', '6d 13h 19m', 'Sat, 25 Aug 2018 17:39:38', 'Sat, 01 Sep 2018 06:58:44')[0m
+  [1m[35m (23.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSystem Create (0.4ms)[0m  [1m[32mINSERT INTO `systems` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `load_average`, `cpu`, `memory_usage`, `swap_usage`, `uptime`, `boot_time`, `data_collected`) VALUES ('sivas-MacBook-Air-2.local', 'OK', 'Monitored', 'active', 'start', '[3.72] [3.42] [3.73]', '26.1%us 9.7%sy', '4.1 GB [51.6%]', '2.0 GB [65.8%]', '6d 13h 22m', 'Sat, 25 Aug 2018 17:39:38', 'Sat, 01 Sep 2018 07:01:44')[0m
+  [1m[35m (34.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (5.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddSystemIdToProcesses (20180901070230)
+  [1m[35m (145.9ms)[0m  [1m[35mALTER TABLE `processes` ADD `system_id` int[0m
+  ↳ db/migrate/20180901070230_add_system_id_to_processes.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070230')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to AddSystemIdToMonit (20180901070405)
+  [1m[35m (43.7ms)[0m  [1m[35mALTER TABLE `monits` ADD `system_id` int[0m
+  ↳ db/migrate/20180901070405_add_system_id_to_monit.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070405')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (1.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (133.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `mumonit`[0m
+  ↳ bin/rake:9
+  [1m[35m (2.1ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (11.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS `mumonit-test`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (88.7ms)[0m  [1m[35mCREATE DATABASE `mumonit` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE DATABASE `mumonit-test` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (62.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rake:9
+  [1m[35m (25.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to CreateUsers (20180829150018)
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20180829150018_create_users.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150018')[0m
+  ↳ bin/rake:9
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitSystems (20180829150453)
+  [1m[35m (24.3ms)[0m  [1m[35mCREATE TABLE `monit_systems` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `status` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `load_average` varchar(255), `cpu` varchar(255), `memory_usage` varchar(255), `swap_usage` varchar(255), `uptime` varchar(255), `boot_time` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150453_create_monit_systems.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150453')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitProcesses (20180829150610)
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE TABLE `monit_processes` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `pid_file` varchar(255), `status` varchar(255), `group` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `pid` varchar(255), `parent_pid` varchar(255), `uid` varchar(255), `effective_uid` varchar(255), `gid` varchar(255), `uptime` varchar(255), `threads` varchar(255), `children` varchar(255), `cpu` varchar(255), `cpu_total` varchar(255), `memory` varchar(255), `memory_total` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150610_create_monit_processes.rb:3
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (2.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150610')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitInstances (20180829151701)
+  [1m[35m (18.9ms)[0m  [1m[35mCREATE TABLE `monit_instances` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `monit_id` varchar(255), `host` varchar(255), `process_id` varchar(255), `effective_user_running_monit` varchar(255), `controlfile` varchar(255), `logfile` varchar(255), `pidfile` varchar(255), `state_file` varchar(255), `debug` varchar(255), `log` varchar(255), `use_syslog` varchar(255), `limit_for_send_expect_buffer` varchar(255), `limit_for_file_content_buffer` varchar(255), `limit_for_http_content_buffer` varchar(255), `limit_for_program_output` varchar(255), `limit_for_network_timeout` varchar(255), `limit_for_check_program_timeout` varchar(255), `limit_for_service_stop_timeout` varchar(255), `limit_for_service_start_timeout` varchar(255), `limit_for_service_restart_timeout` varchar(255), `on_reboot` varchar(255), `poll_time` varchar(255), `httpd_bind_address` varchar(255), `httpd_portnumber` varchar(255), `httpd_signature` varchar(255), `httpd_auth_style` varchar(255))[0m
+  ↳ db/migrate/20180829151701_create_monit_instances.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (2.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829151701')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to AddMonitInstanceIdToMonitProcesses (20180901070230)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddMonitInstanceIdToMonitProcesses (20180901070230)
+  [1m[35m (139.5ms)[0m  [1m[35mALTER TABLE `monit_processes` ADD `monit_instance_id` int[0m
+  ↳ db/migrate/20180901070230_add_monit_instance_id_to_monit_processes.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (2.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070230')[0m
+  ↳ bin/rake:9
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-09-01 07:17:22', '2018-09-01 07:17:22')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddSystemIdToMonit (20180901070405)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (2.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddMonitSystemIdToMonitInstances (20180901070405)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddMonitSystemIdToMonitInstances (20180901070405)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to AddMonitSystemIdToMonitInstances (20180901070405)
+  [1m[35m (134.5ms)[0m  [1m[35mALTER TABLE `monit_instances` ADD `monit_system_id` int[0m
+  ↳ db/migrate/20180901070405_add_monit_system_id_to_monit_instances.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070405')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (2.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMonitSystem Create (0.5ms)[0m  [1m[32mINSERT INTO `monit_systems` (`status`) VALUES ('Success')[0m
+  [1m[35m (48.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMonitSystem Create (0.8ms)[0m  [1m[32mINSERT INTO `monit_systems` (`status`) VALUES ('Success')[0m
+  [1m[35m (80.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMonitSystem Load (0.6ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`status` = '' LIMIT 11[0m
+  [1m[36mMonitSystem Load (1.0ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`status` = '' ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitSystem Load (0.8ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`status` = '' ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[35m (3.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.0ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[36mMonitSystem Create (2.4ms)[0m  [1m[32mINSERT INTO `monit_systems` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `load_average`, `cpu`, `memory_usage`, `swap_usage`, `uptime`, `boot_time`, `data_collected`) VALUES ('sivas-MacBook-Air-2.local', 'OK', 'Monitored', 'active', 'start', '[3.43] [3.59] [3.48]', '34.2%us 11.6%sy', '3.8 GB [48.0%]', '2.6 GB [88.1%]', '6d 19h 33m', 'Sat, 25 Aug 2018 17:39:38', 'Sat, 01 Sep 2018 13:12:25')[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[35m (55.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[36mMonitInstance Load (5.5ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE (89f0dd17d9b363ffda3dc80ef537d031)[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (1.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.8ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[35m (4.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.0ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[35m (10.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.1ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (2.0ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE (89f0dd17d9b363ffda3dc80ef537d031)[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (7.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (2.9ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.4ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[36mMonitSystem Load (1.1ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`id` = 3 LIMIT 1[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[36mMonitInstance Create (3.0ms)[0m  [1m[32mINSERT INTO `monit_instances` (`monit_id`, `host`, `process_id`, `effective_user_running_monit`, `controlfile`, `logfile`, `pidfile`, `state_file`, `debug`, `log`, `use_syslog`, `limit_for_send_expect_buffer`, `limit_for_file_content_buffer`, `limit_for_http_content_buffer`, `limit_for_program_output`, `limit_for_network_timeout`, `limit_for_check_program_timeout`, `limit_for_service_stop_timeout`, `limit_for_service_start_timeout`, `limit_for_service_restart_timeout`, `on_reboot`, `poll_time`, `httpd_bind_address`, `httpd_portnumber`, `httpd_signature`, `monit_system_id`) VALUES ('89f0dd17d9b363ffda3dc80ef537d031', 'sivas-MacBook-Air-2.local', '18786', 'noskillguy', '/Users/noskillguy/.monitrc', '/Users/noskillguy/monit.log', '/Users/noskillguy/.monit.pid', '/Users/noskillguy/.monit.state', 'False', 'True', 'False', '256 B', '512 B', '1 MB', '512 B', '5 s', '5 m', '30 s', '30 s', '30 s', 'start', '20 seconds with start delay 0 seconds', 'Any/All', '2812', 'True', 3)[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[35m (101.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[35m (1.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.3ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.2ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (1.0ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (6.1ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 49m', '42', '0', '0.1%', '0.1%', '0.4% [30.7 MB]', '0.4% [30.7 MB]', 'Sat, 01 Sep 2018 13:21:25', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (36.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (1.4ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (1.3ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 49m', '42', '0', '0.1%', '0.1%', '0.4% [30.7 MB]', '0.4% [30.7 MB]', 'Sat, 01 Sep 2018 13:21:25', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (5.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.4ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.0ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (0.8ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (2.8ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 51m', '42', '0', '0.1%', '0.1%', '0.4% [31.6 MB]', '0.4% [31.6 MB]', 'Sat, 01 Sep 2018 13:23:46', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (48.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (0.8ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (1.0ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 51m', '42', '0', '0.1%', '0.1%', '0.4% [31.6 MB]', '0.4% [31.6 MB]', 'Sat, 01 Sep 2018 13:23:46', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (6.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (1.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.8ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.4ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (1.1ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (1.2ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 52m', '42', '0', '0.1%', '0.1%', '0.3% [27.3 MB]', '0.3% [27.3 MB]', 'Sat, 01 Sep 2018 13:24:26', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (93.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (2.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitInstance Load (2.6ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[36mMonitProcess Create (3.1ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 52m', '42', '0', '0.1%', '0.1%', '0.3% [27.3 MB]', '0.3% [27.3 MB]', 'Sat, 01 Sep 2018 13:24:26', 1)[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:28
+  [1m[35m (16.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (3.3ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.0ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (0.6ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (5.2ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 58m', '42', '0', '0.1%', '0.1%', '0.0% [1.8 MB]', '0.0% [1.8 MB]', 'Sat, 01 Sep 2018 13:30:31', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (86.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (0.5ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (2.1ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 17h 58m', '42', '0', '0.1%', '0.1%', '0.0% [1.8 MB]', '0.0% [1.8 MB]', 'Sat, 01 Sep 2018 13:30:31', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[35m (1.0ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (0.6ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (0.8ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (0.5ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (2.5ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 18h 0m', '42', '0', '0.1%', '0.1%', '0.2% [16.8 MB]', '0.2% [16.8 MB]', 'Sat, 01 Sep 2018 13:32:51', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (0.5ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (0.4ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `data_collected`, `monit_instance_id`) VALUES ('recko_stats', 'Does not exist', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', 'Sat, 01 Sep 2018 13:32:51', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (3.1ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (208.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS `mumonit`[0m
+  ↳ bin/rake:9
+  [1m[35m (2.0ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (3.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS `mumonit-test`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.9ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE DATABASE `mumonit` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.9ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE DATABASE `mumonit-test` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rake:9
+  [1m[35m (96.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rake:9
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT GET_LOCK('4930279723084654365', 0)[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+Migrating to CreateUsers (20180829150018)
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20180829150018_create_users.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150018')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitSystems (20180829150453)
+  [1m[35m (48.5ms)[0m  [1m[35mCREATE TABLE `monit_systems` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `status` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `load_average` varchar(255), `cpu` varchar(255), `memory_usage` varchar(255), `swap_usage` varchar(255), `uptime` varchar(255), `boot_time` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150453_create_monit_systems.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150453')[0m
+  ↳ bin/rake:9
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitProcesses (20180829150610)
+  [1m[35m (33.3ms)[0m  [1m[35mCREATE TABLE `monit_processes` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `pid_file` varchar(255), `status` varchar(255), `group` varchar(255), `monitoring_status` varchar(255), `monitoring_mode` varchar(255), `on_reboot` varchar(255), `pid` varchar(255), `parent_pid` varchar(255), `uid` varchar(255), `effective_uid` varchar(255), `gid` varchar(255), `uptime` varchar(255), `threads` varchar(255), `children` varchar(255), `cpu` varchar(255), `cpu_total` varchar(255), `memory` varchar(255), `memory_total` varchar(255), `data_collected` varchar(255))[0m
+  ↳ db/migrate/20180829150610_create_monit_processes.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829150610')[0m
+  ↳ bin/rake:9
+  [1m[35m (6.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to CreateMonitInstances (20180829151701)
+  [1m[35m (38.9ms)[0m  [1m[35mCREATE TABLE `monit_instances` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `monit_id` varchar(255), `host` varchar(255), `process_id` varchar(255), `effective_user_running_monit` varchar(255), `controlfile` varchar(255), `logfile` varchar(255), `pidfile` varchar(255), `state_file` varchar(255), `debug` varchar(255), `log` varchar(255), `use_syslog` varchar(255), `limit_for_send_expect_buffer` varchar(255), `limit_for_file_content_buffer` varchar(255), `limit_for_http_content_buffer` varchar(255), `limit_for_program_output` varchar(255), `limit_for_network_timeout` varchar(255), `limit_for_check_program_timeout` varchar(255), `limit_for_service_stop_timeout` varchar(255), `limit_for_service_start_timeout` varchar(255), `limit_for_service_restart_timeout` varchar(255), `on_reboot` varchar(255), `poll_time` varchar(255), `httpd_bind_address` varchar(255), `httpd_portnumber` varchar(255), `httpd_signature` varchar(255), `httpd_auth_style` varchar(255))[0m
+  ↳ db/migrate/20180829151701_create_monit_instances.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180829151701')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to AddMonitInstanceIdToMonitProcesses (20180901070230)
+  [1m[35m (75.4ms)[0m  [1m[35mALTER TABLE `monit_processes` ADD `monit_instance_id` int[0m
+  ↳ db/migrate/20180901070230_add_monit_instance_id_to_monit_processes.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070230')[0m
+  ↳ bin/rake:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+Migrating to AddMonitSystemIdToMonitInstances (20180901070405)
+  [1m[35m (67.7ms)[0m  [1m[35mALTER TABLE `monit_instances` ADD `monit_system_id` int[0m
+  ↳ db/migrate/20180901070405_add_monit_system_id_to_monit_instances.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180901070405')[0m
+  ↳ bin/rake:9
+  [1m[35m (13.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rake:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-09-01 08:03:24', '2018-09-01 08:03:24')[0m
+  ↳ bin/rake:9
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT RELEASE_LOCK('4930279723084654365')[0m
+  ↳ bin/rake:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rake:9
+  [1m[35m (2.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (0.7ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[36mMonitSystem Create (0.7ms)[0m  [1m[32mINSERT INTO `monit_systems` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `load_average`, `cpu`, `memory_usage`, `swap_usage`, `uptime`, `boot_time`, `data_collected`) VALUES ('sivas-MacBook-Air-2.local', 'OK', 'Monitored', 'active', 'start', '[5.56] [14.43] [10.37]', '27.6%us 10.6%sy', '4.0 GB [50.3%]', '2.9 GB [72.9%]', '6d 19h 53m', 'Sat, 25 Aug 2018 17:39:38', 'Sat, 01 Sep 2018 13:33:11')[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_system.rb:32
+  [1m[36mMonitInstance Load (0.7ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:31
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[36mMonitSystem Load (1.4ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[36mMonitInstance Create (2.0ms)[0m  [1m[32mINSERT INTO `monit_instances` (`monit_id`, `host`, `process_id`, `effective_user_running_monit`, `controlfile`, `logfile`, `pidfile`, `state_file`, `debug`, `log`, `use_syslog`, `limit_for_send_expect_buffer`, `limit_for_file_content_buffer`, `limit_for_http_content_buffer`, `limit_for_program_output`, `limit_for_network_timeout`, `limit_for_check_program_timeout`, `limit_for_service_stop_timeout`, `limit_for_service_start_timeout`, `limit_for_service_restart_timeout`, `on_reboot`, `poll_time`, `httpd_bind_address`, `httpd_portnumber`, `httpd_signature`, `monit_system_id`) VALUES ('89f0dd17d9b363ffda3dc80ef537d031', 'sivas-MacBook-Air-2.local', '18786', 'noskillguy', '/Users/noskillguy/.monitrc', '/Users/noskillguy/monit.log', '/Users/noskillguy/.monit.pid', '/Users/noskillguy/.monit.state', 'False', 'True', 'False', '256 B', '512 B', '1 MB', '512 B', '5 s', '5 m', '30 s', '30 s', '30 s', 'start', '20 seconds with start delay 0 seconds', 'Any/All', '2812', 'True', 1)[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_instance.rb:34
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (0.7ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (0.9ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 18h 1m', '42', '0', '0.3%', '0.3%', '0.2% [18.3 MB]', '0.2% [18.3 MB]', 'Sat, 01 Sep 2018 13:33:11', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitInstance Load (3.8ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[36mMonitProcess Create (0.6ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `data_collected`, `monit_instance_id`) VALUES ('recko_stats', 'Does not exist', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', 'Sat, 01 Sep 2018 13:33:11', 1)[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:31
+  [1m[35m (1.0ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (1.1ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (1.0ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:30
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitInstance Load (0.7ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitProcess Create (0.6ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 18h 1m', '42', '0', '0.2%', '0.2%', '0.5% [43.0 MB]', '0.5% [43.0 MB]', 'Sat, 01 Sep 2018 13:33:51', 1)[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (42.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitInstance Load (1.4ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitProcess Create (0.5ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `data_collected`, `monit_instance_id`) VALUES ('recko_stats', 'Does not exist', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', 'Sat, 01 Sep 2018 13:33:51', 1)[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (0.9ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ app/models/monit_system.rb:11
+  [1m[36mMonitSystem Load (0.6ms)[0m  [1m[34mSELECT `monit_systems`.* FROM `monit_systems` WHERE `monit_systems`.`name` = 'sivas-MacBook-Air-2.local'[0m
+  ↳ app/models/monit_system.rb:29
+  [1m[36mMonitInstance Load (0.6ms)[0m  [1m[34mSELECT `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_id` = '89f0dd17d9b363ffda3dc80ef537d031'[0m
+  ↳ app/models/monit_instance.rb:30
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitInstance Load (0.6ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitProcess Create (0.6ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `pid_file`, `status`, `group`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `parent_pid`, `uid`, `effective_uid`, `gid`, `uptime`, `threads`, `children`, `cpu`, `cpu_total`, `memory`, `memory_total`, `data_collected`, `monit_instance_id`) VALUES ('mysqld', '/usr/local/var/mysql/sivas-MacBook-Air-2.local.pid', 'OK', 'database', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', '29072', '501', '501', '20', '4d 18h 2m', '42', '0', '0.1%', '0.1%', '0.5% [43.9 MB]', '0.5% [43.9 MB]', 'Sat, 01 Sep 2018 13:34:31', 1)[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (65.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitInstance Load (1.1ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`id` = 1 LIMIT 1[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[36mMonitProcess Create (2.6ms)[0m  [1m[32mINSERT INTO `monit_processes` (`name`, `status`, `monitoring_status`, `monitoring_mode`, `on_reboot`, `pid`, `data_collected`, `monit_instance_id`) VALUES ('recko_stats', 'Does not exist', 'Monitored', 'active', 'start', 'If changed then exec \'/Users/noskillguy/monit/slack_notifications.sh\'', 'Sat, 01 Sep 2018 13:34:31', 1)[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/monit_process.rb:27
+  [1m[35m (1.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mMonitSystem Load (2.1ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` LIMIT 11[0m
+  [1m[36mMonitSystem Load (0.8ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitSystem Load (0.6ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitInstance Load (0.8ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_system_id` = 1 LIMIT 11[0m
+  [1m[36mMonitSystem Load (0.7ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `monit_instances` WHERE `monit_instances`.`monit_system_id` = 1[0m
+  [1m[36mMonitSystem Load (0.6ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitInstance Load (0.6ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_system_id` = 1 ORDER BY `monit_instances`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitSystem Load (1.5ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitInstance Load (0.7ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_system_id` = 1 ORDER BY `monit_instances`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitProcess Load (0.8ms)[0m  [1m[34mSELECT  `monit_processes`.* FROM `monit_processes` WHERE `monit_processes`.`monit_instance_id` = 1 LIMIT 11[0m
+  [1m[36mMonitSystem Load (1.3ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
+  [1m[36mMonitInstance Load (1.2ms)[0m  [1m[34mSELECT  `monit_instances`.* FROM `monit_instances` WHERE `monit_instances`.`monit_system_id` = 1 ORDER BY `monit_instances`.`id` ASC LIMIT 1[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `monit_processes` WHERE `monit_processes`.`monit_instance_id` = 1[0m
+  [1m[36mMonitSystem Load (1.0ms)[0m  [1m[34mSELECT  `monit_systems`.* FROM `monit_systems` ORDER BY `monit_systems`.`id` ASC LIMIT 1[0m
