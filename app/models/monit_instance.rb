@@ -1,7 +1,7 @@
 class MonitInstance < ApplicationRecord
 	belongs_to :monit_system
 	has_many :monit_processes
-	def self.scrape_and_create_monit url=nil, monit_system_id=nil
+	def self.scrape_and_create_monit url=nil, monit_system_id=nil, username, password
 		require 'nokogiri'
 		require 'net/http'
 		require 'openssl'
@@ -12,7 +12,7 @@ class MonitInstance < ApplicationRecord
 		white_listed_params = self.column_names
 		Net::HTTP.start(uri.host, uri.port, :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
 		  request = Net::HTTP::Get.new uri.request_uri
-		  request.basic_auth 'admin', 'monit'
+		  request.basic_auth username, password
 		  response = http.request request
 		  doc = Nokogiri::HTML(response.body)
 			tables = doc.search('table')

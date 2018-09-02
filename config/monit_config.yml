@@ -5,3 +5,5 @@ localhost:
     - mysqld
     - recko_stats
   monit_system_url: sivas-MacBook-Air-2.local
+  username: admin
+  password: monit

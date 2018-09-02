@@ -1,3 +1,4 @@
+require 'yaml'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @monit_config = YAML.load_file("#{Rails.root}/config/monit_config.yml")
   end
 
   # GET /users/new
@@ -59,6 +61,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def dashboard
+    
   end
 
   private
