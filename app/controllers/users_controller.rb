@@ -1,7 +1,7 @@
 require 'yaml'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  layout 'application'
   # GET /users
   # GET /users.json
   def index
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @monit_config = YAML.load_file("#{Rails.root}/config/monit_config.yml")
+    
   end
 
   # GET /users/new
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    
+    @monit_config = YAML.load_file("#{Rails.root}/config/monit_config.yml")
   end
 
   private

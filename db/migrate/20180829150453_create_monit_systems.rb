@@ -12,7 +12,8 @@ class CreateMonitSystems < ActiveRecord::Migration[5.2]
       t.string :swap_usage
       t.string :uptime
       t.string :boot_time
-      t.string :data_collected      
+      t.string :data_collected
+      t.timestamps
     end
   end
 end

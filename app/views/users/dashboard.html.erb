@@ -1,0 +1,43 @@
+<%#= line_chart User.group_by_day(:created_at).count %>
+<% @monit_config.each do |monit_host,monit_host_config| %>
+  <div class="col-md-12">
+    <div class="card strpied-tabled-with-hover">
+      <div class="card-header ">
+        <h4 class="card-title"><%= monit_host_config['monit_system_url'] %></h4>
+        <!-- <p class="card-category">Here is a subtitle for this table</p> -->
+    </div>
+    <%
+      monit_system = MonitSystem.where(name: monit_host_config['monit_system_url']).first
+      monit_instances = monit_system.monit_instances
+    %>
+    <% monit_instances.each do |monit_instance| %>
+      <% i = 0%>
+      <div class="card-body table-full-width table-responsive" style="overflow-x:auto;">
+        <table class="table table-hover table-striped">
+          <thead>
+             <% monit_instance.monit_processes.first.attributes.each do |key,value| %>
+                <th><%= key %></th>
+              <% end %>        
+          </thead>
+          <tbody>
+            <% monit_host_config['monit_process_urls'].each do |monit_process_name| %>
+              <% monit_process = monit_instance.monit_processes.where(name: monit_process_name).last %>
+              <tr>
+                <% monit_process.attributes.each do |key,value| %>
+                  <td><%= value %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= pie_chart monit_instance.monit_processes.group(:name).count %>
+        <%#= bar_chart monit_instance.monit_processes.group(:status).sum(:price) %>
+        <%= column_chart monit_instance.monit_processes.group(:name, :status).count %>
+        <%# monit_host_config['monit_process_urls'] %>
+        
+        <%= line_chart MonitProcess.group(:name).group_by_minute(:created_at).count %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<% end %>

@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2018_09_01_141152) do
     t.string "httpd_portnumber"
     t.string "httpd_signature"
     t.string "httpd_auth_style"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "monit_system_id"
   end
 
@@ -63,6 +65,8 @@ ActiveRecord::Schema.define(version: 2018_09_01_141152) do
     t.string "memory"
     t.string "memory_total"
     t.string "data_collected"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "monit_instance_id"
   end
 
@@ -79,11 +83,15 @@ ActiveRecord::Schema.define(version: 2018_09_01_141152) do
     t.string "uptime"
     t.string "boot_time"
     t.string "data_collected"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_monit_systems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "monit_system_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

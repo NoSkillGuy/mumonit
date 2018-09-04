@@ -4,6 +4,20 @@ localhost:
   monit_process_urls:
     - mysqld
     - recko_stats
+    - elasticsearch
   monit_system_url: sivas-MacBook-Air-2.local
   username: admin
   password: monit
+# st-recko:
+#   host_url: http://918c3369.ngrok.io/
+#   monit_url: _runtime
+#   monit_process_urls:
+#     - recko_stats
+#     - recko_session
+#     - recko_session
+#     - pm2
+#     - nginx
+#     - kue
+#   monit_system_url: ip-172-31-37-33.us-west-2.compute.internal
+#   username: admin
+#   password: monit

@@ -20,7 +20,8 @@ class CreateMonitProcesses < ActiveRecord::Migration[5.2]
       t.string :cpu_total
       t.string :memory
       t.string :memory_total
-      t.string :data_collected      
+      t.string :data_collected    
+      t.timestamps  
     end
   end
 end

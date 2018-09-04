@@ -3,6 +3,7 @@ class CreateUserMonitSystem < ActiveRecord::Migration[5.2]
   	create_table :user_monit_systems do |t|
   		t.integer :user_id
   		t.integer :monit_system_id
+  		t.timestamps
   	end
   end
 end

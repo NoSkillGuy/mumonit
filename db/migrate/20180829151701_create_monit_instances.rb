@@ -27,6 +27,7 @@ class CreateMonitInstances < ActiveRecord::Migration[5.2]
       t.string :httpd_portnumber
       t.string :httpd_signature
       t.string :httpd_auth_style            
+      t.timestamps
     end
   end
 end
